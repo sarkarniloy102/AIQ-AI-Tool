@@ -53,9 +53,10 @@ function App() {
                   item.type == 'q' ?
                     <Answers
                       key={idx + Math.random()}
-                      className="text-left p-1"
+                      className="text-right text-7xl border border-zinc-600 p-1"
                       ans={item.text}
                       totalResult={1}
+                      flag={0}
                       idx={idx}></Answers> :
                     item.text.map((ansItem, ansIndex) => (
                       <Answers
@@ -63,6 +64,7 @@ function App() {
                         className="text-left p-1"
                         ans={ansItem}
                         totalResult={1}
+                        flag={1}
                         idx={ansIndex}></Answers>
                     ))
                 ))
