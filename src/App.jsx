@@ -5,7 +5,7 @@ import Answers from "./Components/Answers";
 
 function App() {
   const [question, setQuestion] = useState('');
-  const [result, setResult] = useState(undefined);
+  const [result, setResult] = useState([]);
 
   const payload = {
     "contents": [
@@ -30,9 +30,9 @@ function App() {
     // console.log(dataString.split("* "));
     const dataArray = dataString.split("* ").map(item => item.trim());
 
-    setResult(dataArray)
+    setResult([...result, { type: 'q', text: question }, { type: 'a', text: dataArray }])
 
-    console.log(dataArray);
+    // console.log(dataArray);
   }
 
 
@@ -45,15 +45,28 @@ function App() {
         </div>
         {/* content */}
         <div className="col-span-4  ">
-          <div className="container h-140 p-10 overflow-y-scrolls overflow-x-hidden">
-            <div className="text-white">
+          <div className="container h-155 p-10  overflow-auto overscroll-auto">
+            <div className="text-zinc-200">
               {
-                result && result.map((item, idx) => (
-                  <Answers
-                    key={idx}
-                    ans={item}
-                    idx={idx}></Answers>
+
+                result.map((item, idx) => (
+                  item.type == 'q' ?
+                    <Answers
+                      key={idx + Math.random()}
+                      className="text-left p-1"
+                      ans={item.text}
+                      totalResult={1}
+                      idx={idx}></Answers> :
+                    item.text.map((ansItem, ansIndex) => (
+                      <Answers
+                        key={ansIndex + Math.random()}
+                        className="text-left p-1"
+                        ans={ansItem}
+                        totalResult={1}
+                        idx={ansIndex}></Answers>
+                    ))
                 ))
+
               }
             </div>
 
