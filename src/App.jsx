@@ -1,12 +1,16 @@
 import { useState } from "react"
 import { URL } from "./Constants";
 import Answers from "./Components/Answers";
+import History from "./Components/History";
+import { getHistory, saveHistory } from "./Utils/Storage";
 
 
 function App() {
   const [question, setQuestion] = useState('');
   const [result, setResult] = useState([]);
+  const [recentHistory, setrecentHistory] = useState(getHistory());
 
+  // intregate gemini api
   const payload = {
     "contents": [
       {
@@ -20,6 +24,9 @@ function App() {
   }
 
   const handleAskQues = async () => {
+
+    const updatedHistory = saveHistory(question);
+    setrecentHistory(updatedHistory);
     // URL = gemini api key url
     const response = await fetch(URL, {
       method: "POST",
@@ -41,15 +48,16 @@ function App() {
       <div className="grid grid-cols-5 h-screen text-center">
         {/* sidebar */}
         <div className="col-span-1 bg-zinc-800">
-
+          <History recentHistory={recentHistory}></History>
         </div>
         {/* content */}
         <div className="col-span-4  ">
           <div className="container h-155 p-10  overflow-auto overscroll-auto">
-            <div className="text-zinc-200">
+            <div className="text-zinc-100">
               {
 
                 result.map((item, idx) => (
+
                   item.type == 'q' ?
                     <Answers
                       key={idx + Math.random()}
@@ -58,6 +66,7 @@ function App() {
                       totalResult={1}
                       flag={0}
                       idx={idx}></Answers> :
+
                     item.text.map((ansItem, ansIndex) => (
                       <Answers
                         key={ansIndex + Math.random()}
