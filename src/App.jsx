@@ -25,6 +25,10 @@ function App() {
 
   const handleAskQues = async () => {
 
+    if (!question) {
+      return false;
+    }
+
     const updatedHistory = saveHistory(question);
     setrecentHistory(updatedHistory);
     // URL = gemini api key url
@@ -38,8 +42,16 @@ function App() {
     const dataArray = dataString.split("* ").map(item => item.trim());
 
     setResult([...result, { type: 'q', text: question }, { type: 'a', text: dataArray }])
-
+    setQuestion('');
     // console.log(dataArray);
+  }
+
+
+  // submit question on Enter
+  const isEnter = (e) => {
+    if (e.key === 'Enter') {
+      handleAskQues();
+    }
   }
 
 
@@ -88,7 +100,8 @@ function App() {
               placeholder="Ask Me Anything"
               className="w-full h-full p-3 outline-none"
               value={question}
-              onChange={(e) => setQuestion(e.target.value)} />
+              onChange={(e) => setQuestion(e.target.value)}
+              onKeyDown={isEnter} />
             <button onClick={handleAskQues} className="cursor-pointer">Ask</button>
           </div>
 
