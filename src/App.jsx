@@ -60,7 +60,7 @@ function App() {
       <div className="grid grid-cols-5 h-screen text-center">
         {/* sidebar */}
         <div className="col-span-1 bg-zinc-800">
-          <History recentHistory={recentHistory}></History>
+          <History recentHistory={recentHistory} setRecentHistory={setrecentHistory}></History>
         </div>
         {/* content */}
         <div className="col-span-4  ">

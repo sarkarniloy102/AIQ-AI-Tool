@@ -12,6 +12,9 @@ export function getHistory() {
 }
 
 // Clear history
-export function clearHistory() {
-    localStorage.removeItem('history');
+export function clearHistory(setRecentHistory) {
+    // localStorage.removeItem('history');
+    localStorage.clear();
+    setRecentHistory([]);
+    
 }
