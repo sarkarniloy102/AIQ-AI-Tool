@@ -3,45 +3,44 @@ import { URL } from "./Constants";
 import Answers from "./Components/Answers";
 import History from "./Components/History";
 import { getHistory, saveHistory } from "./Utils/Storage";
-
+import { payload } from "./Utils/API";
+import React, { useEffect } from 'react';
 
 function App() {
   const [question, setQuestion] = useState('');
   const [result, setResult] = useState([]);
   const [recentHistory, setrecentHistory] = useState(getHistory());
+  const [selectedHistory, setSelectedHistory] = useState('');
 
-  // intregate gemini api
-  const payload = {
-    "contents": [
-      {
-        "parts": [
-          {
-            "text": question
-          }
-        ]
-      }
-    ]
-  }
 
-  const handleAskQues = async () => {
+  const handleAskQues = async (ques = '') => {
 
-    if (!question) {
-      return false;
-    }
+    // if (!question && !selectedHistory) {
+    //   return false;
+    // }
+    const currentQuestion = ques || question || selectedHistory;
+    if (!currentQuestion) return;
 
-    const updatedHistory = saveHistory(question);
+    const updatedHistory = saveHistory(currentQuestion);
     setrecentHistory(updatedHistory);
+
     // URL = gemini api key url
     const response = await fetch(URL, {
       method: "POST",
-      body: JSON.stringify(payload)
+      // to api.js(playload)
+      body: JSON.stringify(payload(question, selectedHistory))
     })
+
     const data = await response.json();
     const dataString = data.candidates[0].content.parts[0].text;
     // console.log(dataString.split("* "));
     const dataArray = dataString.split("* ").map(item => item.trim());
 
-    setResult([...result, { type: 'q', text: question }, { type: 'a', text: dataArray }])
+    setResult(result =>
+      [...result,
+      { type: 'q', text: question ? question : selectedHistory },
+      { type: 'a', text: dataArray }
+      ])
     setQuestion('');
     // console.log(dataArray);
   }
@@ -54,13 +53,17 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    handleAskQues();
+    console.log(selectedHistory);
+  }, [selectedHistory])
 
   return (
     <>
       <div className="grid grid-cols-5 h-screen text-center">
         {/* sidebar */}
         <div className="col-span-1 bg-zinc-800">
-          <History recentHistory={recentHistory} setRecentHistory={setrecentHistory}></History>
+          <History recentHistory={recentHistory} setRecentHistory={setrecentHistory} setSelectedHistory={setSelectedHistory}></History>
         </div>
         {/* content */}
         <div className="col-span-4  ">

@@ -1,7 +1,6 @@
-import React from 'react';
 import { clearHistory } from '../Utils/Storage';
 
-const History = ({ recentHistory,setRecentHistory }) => {
+const History = ({ recentHistory, setRecentHistory, setSelectedHistory }) => {
 
 
     return (
@@ -15,8 +14,11 @@ const History = ({ recentHistory,setRecentHistory }) => {
             </h1>
             <ul className='text-left  text-zinc-400 overflow-auto '>
                 {
-                    recentHistory && recentHistory.map((item) => (
-                        <li className=' rounded-md px-6 py-1 cursor-pointer hover:bg-zinc-700 hover:text-zinc-100 truncate'>{item}</li>
+                    recentHistory && recentHistory.map((item, idx) => (
+                        <li
+                            key={idx}
+                            onClick={() => { setSelectedHistory(item) }}
+                            className=' rounded-md px-6 py-1 cursor-pointer hover:bg-zinc-700 hover:text-zinc-100 truncate'>{item} </li>
                     ))
                 }
             </ul>
