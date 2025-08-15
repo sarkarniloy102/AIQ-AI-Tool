@@ -8,8 +8,11 @@ export async function handleAskQuestion({
     selectedHistory,
     setRecentHistory,
     setResult,
-    setQuestion
+    setQuestion,
+    
 }) {
+    
+    
     const currentQuestion = ques || question || selectedHistory;
     if (!currentQuestion) return;
 
@@ -18,6 +21,7 @@ export async function handleAskQuestion({
     setRecentHistory(updatedHistory);
 
     // Call API
+    
     const response = await fetch(URL, {
         method: "POST",
         body: JSON.stringify(payload(currentQuestion, selectedHistory))

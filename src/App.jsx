@@ -3,6 +3,7 @@ import Answers from "./Components/Answers";
 import History from "./Components/History";
 import { getHistory } from "./Utils/Storage";
 import { handleAskQuestion } from "./Utils/handleAskQuestion";
+import Loader from "./Components/Loader";
 
 function App() {
   const [question, setQuestion] = useState("");
@@ -10,20 +11,33 @@ function App() {
   const [recentHistory, setrecentHistory] = useState(getHistory());
   const [selectedHistory, setSelectedHistory] = useState("");
   const scrollToAns = useRef();
+  const [loader, setLoader] = useState(false);
 
   const ask = (ques = "") => {
+    setLoader(true);
     handleAskQuestion({
       ques,
       question,
       selectedHistory,
       setRecentHistory: setrecentHistory,
       setResult,
-      setQuestion
+      setQuestion,
+
     });
 
+
     setTimeout(() => {
-      scrollToAns.current.scrollTop = scrollToAns.current.scrollHeight;
+
+      // scrollToAns.current.scrollTop = scrollToAns.current.scrollHeight;
+      scrollToAns.current.scrollTo({
+        top: scrollToAns.current.scrollHeight,
+        behavior: "smooth"
+      });
+
+
+      setLoader(false);
     }, 500);
+
   };
 
 
@@ -52,6 +66,10 @@ function App() {
 
         {/* content */}
         <div className="col-span-4">
+          {
+            loader ? <Loader></Loader> : null
+          }
+
           <div ref={scrollToAns} className="container h-155 p-10 overflow-auto overscroll-auto">
             <div className="text-zinc-100">
               {result.map((item, idx) =>

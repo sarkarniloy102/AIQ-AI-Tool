@@ -1,6 +1,6 @@
 export const payload = (question, selectedHistory) => {
-    const payloadData = question?question :selectedHistory;
-
+    const payloadData = question ? question : selectedHistory;
+    
     return {
         contents: [
             {
@@ -8,6 +8,9 @@ export const payload = (question, selectedHistory) => {
                     { text: payloadData }
                 ]
             }
-        ]
-    };
+        ],
+
+    }
+
+
 };
