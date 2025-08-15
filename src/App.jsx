@@ -4,6 +4,7 @@ import History from "./Components/History";
 import { getHistory } from "./Utils/Storage";
 import { handleAskQuestion } from "./Utils/handleAskQuestion";
 import Loader from "./Components/Loader";
+import Navbar from "./Components/Navbar";
 
 function App() {
   const [question, setQuestion] = useState("");
@@ -66,6 +67,8 @@ function App() {
 
         {/* content */}
         <div className="col-span-4">
+
+          <Navbar></Navbar>
           {
             loader ? <Loader></Loader> : null
           }
