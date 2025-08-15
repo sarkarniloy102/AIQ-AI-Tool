@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Answers from "./Components/Answers";
 import History from "./Components/History";
 import { getHistory } from "./Utils/Storage";
@@ -9,8 +9,9 @@ function App() {
   const [result, setResult] = useState([]);
   const [recentHistory, setrecentHistory] = useState(getHistory());
   const [selectedHistory, setSelectedHistory] = useState("");
+  const scrollToAns = useRef();
 
-  const ask = (ques = "") =>
+  const ask = (ques = "") => {
     handleAskQuestion({
       ques,
       question,
@@ -19,6 +20,12 @@ function App() {
       setResult,
       setQuestion
     });
+
+    setTimeout(() => {
+      scrollToAns.current.scrollTop = scrollToAns.current.scrollHeight;
+    }, 500);
+  };
+
 
   const isEnter = (e) => {
     if (e.key === "Enter") {
@@ -45,7 +52,7 @@ function App() {
 
         {/* content */}
         <div className="col-span-4">
-          <div className="container h-155 p-10 overflow-auto overscroll-auto">
+          <div ref={scrollToAns} className="container h-155 p-10 overflow-auto overscroll-auto">
             <div className="text-zinc-100">
               {result.map((item, idx) =>
                 item.type === "q" ? (
