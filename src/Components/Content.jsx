@@ -18,9 +18,9 @@ const Content = ({ question, setQuestion, result, loader, ask, scrollToAns }) =>
             {/* Q&A display */}
             <div
                 ref={scrollToAns}
-                className="container h-130 p-10 overflow-auto overscroll-auto"
+                className="container h-140 p-10 overflow-auto overscroll-auto"
             >
-                <div className="text-zinc-100">
+                <div className="dark:text-zinc-100 text-zinc-900">
                     {result.map((item, idx) =>
                         item.type === "q" ? (
                             <Answers
@@ -48,7 +48,7 @@ const Content = ({ question, setQuestion, result, loader, ask, scrollToAns }) =>
             </div>
 
             {/* Input box */}
-            <div className="bg-zinc-800 w-1/2 h-14 p-1 pr-4 m-auto text-white rounded-4xl border border-zinc-500 flex justify-center items-center ">
+            <div className="dark:bg-zinc-800 bg-blue-100 mb-4 w-1/2 h-14 p-1 pr-4 m-auto text-zinc-900 dark:text-white rounded-4xl border dark:border-zinc-500 border-blue-200 flex justify-center items-center ">
                 <input
                     type="text"
                     placeholder="Ask Me Anything"
@@ -61,6 +61,7 @@ const Content = ({ question, setQuestion, result, loader, ask, scrollToAns }) =>
                     Ask
                 </button>
             </div>
+            <span className="mt-4 text-sm text-zinc-300">AIQ can make mistakes. Check important info.</span>
         </div>
     );
 };

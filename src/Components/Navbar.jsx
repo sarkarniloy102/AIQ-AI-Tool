@@ -3,7 +3,7 @@ import { ChevronDownIcon, EllipsisVerticalIcon, ArrowUpTrayIcon } from "@heroico
 
 const Navbar = () => {
   return (
-    <nav className="bg-zinc-900 text-white flex justify-between items-center px-6 h-14 shadow-md">
+    <nav className="dark:bg-zinc-900 bg-blue-200 dark:text-white text-zinc-900 flex justify-between items-center px-6 h-14 shadow-xs">
       
       {/* Left: Logo + dropdown */}
       <div className="flex items-center space-x-2 cursor-pointer">
@@ -13,11 +13,11 @@ const Navbar = () => {
 
       {/* Right: Share + Menu */}
       <div className="flex items-center space-x-4">
-        <button className="flex items-center space-x-1 hover:bg-zinc-800 px-3 py-1 rounded">
+        <button className="flex items-center space-x-1 dark:hover:bg-zinc-800 hover:bg-amber-100 px-3 py-1 rounded">
           <ArrowUpTrayIcon className="w-4 h-4" />
           <span className="text-sm">Share</span>
         </button>
-        <button className="p-2 rounded hover:bg-zinc-800">
+        <button className="p-2 rounded dark:hover:bg-zinc-800 hover:bg-amber-100">
           <EllipsisVerticalIcon className="w-5 h-5" />
         </button>
       </div>
