@@ -7,7 +7,7 @@ const Navbar = () => {
       
       {/* Left: Logo + dropdown */}
       <div className="flex items-center space-x-2 cursor-pointer">
-        <span className="font-semibold text-lg">AIQ</span>
+        <span className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-gray-400 to-yellow-100">AIQ</span>
         <ChevronDownIcon className="w-4 h-4" />
       </div>
 
