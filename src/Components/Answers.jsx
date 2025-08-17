@@ -31,7 +31,7 @@ const Answers = ({ ans, idx, totalResult, flag }) => {
                     language={match[1]}
                     style={dark}
                     PreTag="div" />
-            ):(
+            ) : (
                 <code {...props} className={className}>
                     {children}
                 </code>
@@ -44,10 +44,10 @@ const Answers = ({ ans, idx, totalResult, flag }) => {
         <>
             <ul>
                 <div className={flag === 0 ? "flex justify-end" : ""}>
-                    <li className={`${flag === 1 ? "text-left " : "text-right border-7 dark:border-zinc-800 border-blue-100 dark:bg-zinc-800 bg-blue-100 w-fit rounded-tr-3xl rounded-br-3xl rounded-bl-3xl"} p-1`}>
+                    <li className={`${flag === 1 ? "text-left " : "text-right dark:bg-zinc-800 bg-blue-100  w-fit rounded-tr-3xl rounded-br-3xl rounded-bl-3xl"} pb-3 px-3`}>
                         {
-                            idx === 0 && totalResult > 1 ? <strong className=" block text-xl">{answer}</strong > :
-                                heading ? <strong className="pt-2 block text-lg">{answer}</strong > : <span className={flag === 0 ? "pl-1" : "pl-4"}>
+                            idx === 0 && totalResult > 1 ? <strong className="bg block text-xl">{answer}</strong > :
+                                heading ? <strong className="pt-2  block text-lg">{answer}</strong > : <span className={flag === 0 ? "pl-1" : "pl-4"}>
                                     <ReactMarkdown components={renderer}>
                                         {answer}
                                     </ReactMarkdown>
