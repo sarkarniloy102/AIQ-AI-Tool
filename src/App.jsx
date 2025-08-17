@@ -104,6 +104,7 @@ function App() {
             recentHistory={recentHistory}
             setRecentHistory={setrecentHistory}
             setSelectedHistory={setSelectedHistory}
+            setResult={setResult}
           />
         </div>
 

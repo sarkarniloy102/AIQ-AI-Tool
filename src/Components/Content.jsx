@@ -61,7 +61,7 @@ const Content = ({ question, setQuestion, result, loader, ask, scrollToAns }) =>
                     Ask
                 </button>
             </div>
-            <span className="mt-4 text-sm text-zinc-300">AIQ can make mistakes. Check important info.</span>
+            <span className="mt-4 text-sm dark:text-zinc-300 text-zinc-800">AIQ can make mistakes. Check important info.</span>
         </div>
     );
 };
