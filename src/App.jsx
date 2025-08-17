@@ -15,9 +15,31 @@ function App() {
   const scrollToAns = useRef();
   const [loader, setLoader] = useState(false);
 
-  const ask = (ques = "") => {
+  // const ask = (ques = "") => {
+  //   setLoader(true);
+  //   handleAskQuestion({
+  //     ques,
+  //     question,
+  //     selectedHistory,
+  //     setRecentHistory: setrecentHistory,
+  //     setResult,
+  //     setQuestion,
+  //   });
+
+  //   setTimeout(() => {
+  //     if (scrollToAns.current) {
+  //       scrollToAns.current.scrollTo({
+  //         top: scrollToAns.current.scrollHeight,
+  //         behavior: "smooth",
+  //       });
+  //     }
+  //     setLoader(false);
+  //   }, 500);
+  // };
+
+  const ask = async (ques = "") => {
     setLoader(true);
-    handleAskQuestion({
+    await handleAskQuestion({
       ques,
       question,
       selectedHistory,
@@ -26,15 +48,14 @@ function App() {
       setQuestion,
     });
 
-    setTimeout(() => {
-      if (scrollToAns.current) {
-        scrollToAns.current.scrollTo({
-          top: scrollToAns.current.scrollHeight,
-          behavior: "smooth",
-        });
-      }
-      setLoader(false);
-    }, 500);
+    if (scrollToAns.current) {
+      scrollToAns.current.scrollTo({
+        top: scrollToAns.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+
+    setLoader(false);
   };
 
   useEffect(() => {
