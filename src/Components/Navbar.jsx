@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronDownIcon, EllipsisVerticalIcon, ArrowUpTrayIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
 
@@ -30,12 +30,12 @@ const Navbar = () => {
 
 
   return (
-    <nav className="dark:bg-zinc-900 bg-blue-200 dark:text-white text-zinc-900 flex justify-between items-center px-6 h-14 shadow-xs">
+    <nav className="dark:bg-zinc-900 bg-blue-200 dark:text-white text-zinc-900 flex justify-between items-center px-6 pt-2.5 lg:pt-0 h-14 shadow-xs">
 
       {/* Left: Logo + dropdown */}
       <div className="flex items-center space-x-2 cursor-pointer">
-        <span className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-gray-400 to-yellow-100">AIQ</span>
-        <ChevronDownIcon className="w-4 h-4" />
+        <span className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-gray-400 to-yellow-100 pl-10 lg:pl-1">AIQ</span>
+        <ChevronDownIcon className="w-4 h-4 hidden lg:inline" />
       </div>
 
       {/* Right: Share + Menu */}
@@ -46,9 +46,7 @@ const Navbar = () => {
           <ArrowUpTrayIcon className="w-4 h-4" />
           <span className="text-sm ">Share</span>
         </button>
-        <button className="p-2 rounded dark:hover:bg-zinc-800 hover:bg-amber-100 cursor-pointer">
-          <EllipsisVerticalIcon className="w-5 h-5" />
-        </button>
+        
       </div>
 
     </nav>

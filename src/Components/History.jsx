@@ -10,7 +10,7 @@ const History = ({ recentHistory, setRecentHistory, setSelectedHistory, setResul
 
 
     return (
-        <div>
+        <div className='container h-screen overflow-auto overscroll-auto'>
             <h1 className='text-xl dark:text-white text-zinc-900 py-2 flex items-center justify-center gap-1'>
                 <span>Recent History</span>
                 <button
