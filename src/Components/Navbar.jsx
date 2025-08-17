@@ -30,7 +30,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="dark:bg-zinc-900 bg-blue-200 dark:text-white text-zinc-900 flex justify-between items-center px-6 pt-2.5 lg:pt-0 h-14 shadow-xs">
+    <nav className="sticky dark:bg-zinc-900 bg-blue-200 dark:text-white text-zinc-900 flex justify-between items-center px-4 lg:px-6 pt-2.5 lg:pt-0 h-14 shadow-xs">
 
       {/* Left: Logo + dropdown */}
       <div className="flex items-center space-x-2 cursor-pointer">
@@ -46,7 +46,7 @@ const Navbar = () => {
           <ArrowUpTrayIcon className="w-4 h-4" />
           <span className="text-sm ">Share</span>
         </button>
-        
+
       </div>
 
     </nav>

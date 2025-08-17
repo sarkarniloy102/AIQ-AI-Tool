@@ -49,44 +49,38 @@ function App() {
   }, [result]);
 
   return (
-    <div>
-      <div className="grid grid-cols-5 h-screen text-center">
-        {/* Theme Toggle */}
-        <ThemeToggle />
-        {/* responsive Sidebar Toggle Button */}
-        <SidebarToggle
-          isOpen={isSidebarOpen}
-          setIsOpen={setIsSidebarOpen}></SidebarToggle>
-        {/* Sidebar */}
-        {/* <div className="col-span-1 dark:bg-zinc-800 bg-blue-100">
-          <History
-            recentHistory={recentHistory}
-            setRecentHistory={setrecentHistory}
-            setSelectedHistory={setSelectedHistory}
-            setResult={setResult}
-          />
-        </div> */}
+
+    <div className="grid grid-cols-1 lg:grid-cols-5 h-screen  text-center">
+      {/* Theme Toggle */}
+      <ThemeToggle />
+      {/* responsive Sidebar Toggle Button */}
+      <SidebarToggle
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}></SidebarToggle>
+      {/* Sidebar */}
+
+      <div
+        className={`fixed inset-y-0 left-0 z-30 w-50 md:w-64 transform transition-transform duration-300 lg:relative lg:translate-x-0 dark:bg-zinc-800 bg-blue-100 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+      >
+        <History
+          recentHistory={recentHistory}
+          setRecentHistory={setrecentHistory}
+          setSelectedHistory={setSelectedHistory}
+          setResult={setResult}
+        />
+      </div>
+
+      {/* Overlay for mobile sidebar */}
+      {isSidebarOpen && (
         <div
-          className={`fixed inset-y-0 left-0 z-30 w-64 transform transition-transform duration-300 md:relative md:translate-x-0 dark:bg-zinc-800 bg-blue-100 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-            }`}
-        >
-          <History
-            recentHistory={recentHistory}
-            setRecentHistory={setrecentHistory}
-            setSelectedHistory={setSelectedHistory}
-            setResult={setResult}
-          />
-        </div>
+          className="fixed inset-0 z-20 bg-black opacity-30 lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
+      )}
 
-        {/* Overlay for mobile sidebar */}
-        {isSidebarOpen && (
-          <div
-            className="fixed inset-0 z-20 bg-black opacity-30 md:hidden"
-            onClick={() => setIsSidebarOpen(false)}
-          ></div>
-        )}
-
-        {/* Content */}
+      {/* Content */}
+      <div className="col-span-1 lg:col-span-4 overflow-y-auto ">
         <Content
           question={question}
           setQuestion={setQuestion}
@@ -96,7 +90,9 @@ function App() {
           scrollToAns={scrollToAns}
         />
       </div>
+
     </div>
+
   );
 }
 

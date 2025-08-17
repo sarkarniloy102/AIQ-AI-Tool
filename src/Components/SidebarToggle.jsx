@@ -3,7 +3,7 @@
 const SidebarToggle = ({ isOpen, setIsOpen }) => {
     return (
         <button
-            className="md:hidden fixed top-4 left-4 z-50 p-2 rounded bg-blue-200 dark:bg-zinc-800 hover:bg-blue-300 dark:hover:bg-zinc-700"
+            className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded bg-blue-200 dark:bg-zinc-800 hover:bg-blue-300 dark:hover:bg-zinc-700"
             onClick={() => setIsOpen(!isOpen)}
         >
             <svg

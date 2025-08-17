@@ -8,7 +8,7 @@ const Content = ({ question, setQuestion, result, loader, ask, scrollToAns }) =>
     };
 
     return (
-        <div className="col-span-4">
+        <div className="flex flex-col h-screen">
             {/* Navbar */}
             <Navbar />
 
@@ -18,14 +18,14 @@ const Content = ({ question, setQuestion, result, loader, ask, scrollToAns }) =>
             {/* Q&A display */}
             <div
                 ref={scrollToAns}
-                className="container h-140 p-10 overflow-auto overscroll-auto"
+                className="flex-1 p-4 md:p-8 lg:p-10 overflow-auto overscroll-auto"
             >
                 <div className="dark:text-zinc-100 text-zinc-900">
                     {result.map((item, idx) =>
                         item.type === "q" ? (
                             <Answers
                                 key={idx + Math.random()}
-                                className="text-right text-7xl border border-zinc-600 p-1"
+                                className="text-right text-base md:text-xl lg:text-2xl border border-zinc-600 p-2 md:p-4 rounded"
                                 ans={item.text}
                                 totalResult={1}
                                 flag={0}
@@ -35,7 +35,8 @@ const Content = ({ question, setQuestion, result, loader, ask, scrollToAns }) =>
                             item.text.map((ansItem, ansIndex) => (
                                 <Answers
                                     key={ansIndex + Math.random()}
-                                    className="text-left p-1"
+                                    className="text-left text-sm md:text-base p-2 md:p-4 rounded"
+
                                     ans={ansItem}
                                     totalResult={1}
                                     flag={1}
@@ -48,7 +49,7 @@ const Content = ({ question, setQuestion, result, loader, ask, scrollToAns }) =>
             </div>
 
             {/* Input box */}
-            <div className="dark:bg-zinc-800 bg-blue-100 mb-4 w-1/2 h-14 p-1 pr-4 m-auto text-zinc-900 dark:text-white rounded-4xl border dark:border-zinc-500 border-blue-200 flex justify-center items-center ">
+            <div className="dark:bg-zinc-800 bg-blue-100 mb-4 w-2/3 lg:w-1/2 h-14 p-1 pr-4 m-auto text-zinc-900 dark:text-white rounded-4xl border dark:border-zinc-500 border-blue-200 flex justify-center items-center ">
                 <input
                     type="text"
                     placeholder="Ask Me Anything"
@@ -61,7 +62,7 @@ const Content = ({ question, setQuestion, result, loader, ask, scrollToAns }) =>
                     Ask
                 </button>
             </div>
-            <span className="mt-4 text-sm dark:text-zinc-300 text-zinc-800">AIQ can make mistakes. Check important info.</span>
+            <span className="mb-4 text-sm dark:text-zinc-300 text-zinc-800">AIQ can make mistakes. Check important info.</span>
         </div>
     );
 };
